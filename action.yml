@@ -1,0 +1,24 @@
+name: "Scala CLA"
+description: "Checks if the author has signed the Scala CLA."
+runs:
+  using: "composite"
+  steps:
+    - name: Check CLA
+      shell: bash
+      env:
+        AUTHOR: ${{ inputs.author }}
+      run: |
+        signed=$(curl -s "https://contribute.akka.io/contribute/cla/scala/check/$AUTHOR" | jq -r ".signed")
+        if [ "$signed" = "true" ] ; then
+          echo "CLA check for $AUTHOR successful"
+        else
+          echo "CLA check for $AUTHOR failed"
+          echo "Please sign the Scala CLA to contribute."
+          echo "Go to https://contribute.akka.io/contribute/cla/scala to sign the Scala CLA"
+          exit 1
+        fi
+
+inputs:
+  author:
+    description: "The Github username of the author."
+    required: true
