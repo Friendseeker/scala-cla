@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Verify CLA
-        uses: scala/cla-verification-action
+        uses: scala/cla-checker
         with:
           author: ${{ github.event.pull_request.user.login }}
 ```
