@@ -1,4 +1,4 @@
-# scala-cla
+# cla-checker
 Checks if the author has signed the Scala CLA
 
 Usage
